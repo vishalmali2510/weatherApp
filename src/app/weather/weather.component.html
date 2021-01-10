@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row pt-2 pb-4 mb-3 weather">
+        <div class="col-md-12">
+          <h3 class="text-center">Weather App</h3>
+        </div>
+    </div>
+    <form [formGroup]="weatherSearchForm">
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <input formControlName="location" class="form-control" type="text" id="weatherLocation" aria-describedby="weatherLocation" placeholder="Please input a Location"/>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-success btn-md" (click)="searchCity()">Search for the weather</button>
+            </div>
+        </div>
+    </form>
+    <div>
+        <table class="table table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th>City name</th>
+                    <th>Temperature</th>
+                    <th>Sunrise time</th>
+                    <th>Sunset time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let weather of weatherData index as i">
+                    <td class="text-color" (click)="openWeatherDetails(weather)">{{weather.name}}</td>
+                    <td>{{weather.main.temp}}<sup>o</sup>C</td>
+                    <td>{{weather.sys.sunrise | dateTimeFormat}}</td>
+                    <td>{{weather.sys.sunset | dateTimeFormat}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

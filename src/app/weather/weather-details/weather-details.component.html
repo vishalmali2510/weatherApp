@@ -1,0 +1,48 @@
+<div class="app-right-panel panel--from-right">
+    <div class="app-right-panel-container">
+        <div class="row m-0 add-edit-header">
+            <div class="col-md-4">
+                <h3 class="osr-semi-bold text-right" translate>Weather Details</h3>
+            </div>
+            <div class="col-md-8 text-right p-0">
+                <button class="mr-4 close-btn" (click)="backToProduct()" type="button">Close</button>
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-md-4"></div>
+            <div class="col-md-7" *ngIf="weatherData">
+                <p class="text-left m-2">Current weather forecost: {{weatherData.name}} <span class="days-text">(Shown 5 days / 3 hour forecast data)</span></p>
+            </div>
+        </div>
+        <div class="row m-0">
+            <div class="col-md-12 pl-5 pr-5">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Weather</th>
+                            <th>Current Temperature</th>
+                            <th>Temperature Max</th>
+                            <th>Temperature Min</th>
+                            <th>Sea Level</th>
+                            <th>Humidity</th>
+                            <th>Pressure</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngIf="weatherDaysData">
+                        <tr *ngFor="let weather of weatherDaysData.list index as i">
+                            <td class="text-color">{{weather.dt | dateTimeFormat}}</td>
+                            <td>{{weather.weather[0].description}} <span><img class="wicon" src="{{weatherIcon(weather.weather[0].icon)}}"></span></td>
+                            <td>{{weather.main.temp}} <sup>o</sup>C</td>
+                            <td>{{weather.main.temp_max}}<sup>o</sup>C</td>
+                            <td>{{weather.main.temp_min}}<sup>o</sup>C</td>
+                            <td>{{weather.main.sea_level}}</td>
+                            <td>{{weather.main.humidity}} %</td>
+                            <td>{{weather.main.pressure}} mb</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
